@@ -1,0 +1,2 @@
+# ScratchProject
+Codesmith scratch project
