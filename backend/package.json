@@ -1,14 +1,14 @@
 {
-  "name": "client-manager-app",
+  "name": "cocktail-finder",
   "version": "1.0.0",
-  "description": "Solo Project",
+  "description": "Scratch Project",
   "main": "server.js",
   "scripts": {
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
     "client": "npm start --prefix client"
   },
-  "author": "Johnny Howell",
+  "author": "Goblin Sharks",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",

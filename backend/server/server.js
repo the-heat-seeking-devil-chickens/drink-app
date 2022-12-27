@@ -1,40 +1,37 @@
-const path = require('path');
 const express = require('express');
-const app = express();
-const Router = require('./routes/api');
-const PORT = 8000;
+/* A middleware that allows us to make requests from a different domain. */
+const cors = require('cors');
+const colors = require('colors');
+const dotenv = require('dotenv').config();
+const PORT = process.env.PORT || 8080;
+const connectDB = require('./config/db');
 
-/**
- * handle parsing request body
- */
+//Connect to our MongoDB
+connectDB();
+
+const app = express();
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
+app.use('/', require('./routes/cocktailRoutes'));
 
 /**
  * handle requests for static files
  */
-app.use(express.static(path.resolve(__dirname, '../client')));
+//app.use(express.static(path.resolve(__dirname, '../frontend/client/assets')));
 
-/**
- * define route handlers
- */
-app.use('/api', apiRouter);
-
-/**
- * express error handler
- * @see https://expressjs.com/en/guide/error-handling.html#writing-error-handlers
- */
-
-app.use((err, req, res, next) => {
-  const defaultErr = {
-    log: 'Express error handler caught unknown middleware error',
-    status: 500,
-    message: { err: 'An error occurred' },
-  };
-  const errorObj = Object.assign({}, defaultErr, err);
-  console.log(errorObj.log);
-  return res.status(errorObj.status).json(errorObj.message);
-});
+// app.use((err, req, res, next) => {
+//   const defaultErr = {
+//     log: 'Express error handler caught unknown middleware error',
+//     status: 500,
+//     message: { err: 'An error occurred' },
+//   };
+//   const errorObj = Object.assign({}, defaultErr, err);
+//   console.log(errorObj.log);
+//   return res.status(errorObj.status).json(errorObj.message);
+// });
 
 /**
  * start server

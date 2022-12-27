@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
-const cocktailSchema = mongoose.Schema({
+const Schema = mongoose.Schema;
+
+const spiritSchema = new Schema({
   name: String,
   liquor: Array,
   ingredients: Array,
-  garnish: Array,
-  description: String,
+  garnish: String,
+  directions: Array,
 });
 
-const Cocktail = mongoose.model('cocktail', cocktailSchema);
-module.exports = { Cocktail };
+const Spirit = mongoose.model('spirit', spiritSchema);
+module.exports = Spirit;
