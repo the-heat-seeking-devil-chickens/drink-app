@@ -55,16 +55,10 @@ const Card = ({ cocktail }) => {
         <button className="showModal" onClick={() => setShowModal(true)}>
           View Recipe <IoArrowForwardOutline />
         </button>
-        {/* <ul className="ingredient-list">{ingredientList}</ul>
-        <span>{garnish}</span>
-        <ul className="directions-list">{directionsList}</ul> */}
       </div>
       {showModal ? (
         <Modal className="modal-active">
           <div className="card-box">
-            <button className="hideModal" onClick={() => setShowModal(false)}>
-              X
-            </button>
             <img src={`../src/assets/${getImage()}.jpg`} alt={name} />
             <div className="card-info">
               <button className="hideModal" onClick={() => setShowModal(false)}>
