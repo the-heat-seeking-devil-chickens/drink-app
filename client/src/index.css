@@ -1,0 +1,496 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  /* Variables */
+  --primary-color: #006bde;
+  --secondary-color: #8cc2fc;
+  --text-light: #fff;
+  --text-dark: #232323;
+}
+html {
+  font-size: 10px;
+}
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  font-family: 'Inter';
+  display: flex;
+  width: calc(100vw - 300px);
+  min-height: 100vh;
+  background-color: #333333;
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23efefef' fill-opacity='0.12' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+  padding: 8rem 0 8rem 30rem;
+  overflow-x: hidden;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 10px;
+}
+ul li {
+  display: block;
+  margin: 5px 0;
+}
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: none;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/*---------------------
+   Utitlity Classes
+-------------------- */
+
+/*Layout & Positioning*/
+.display-flex {
+  display: flex;
+}
+.display-block {
+  display: block;
+}
+.pos-relative {
+  position: relative;
+}
+.pos-absolute {
+  position: absolute;
+}
+.pos-fixed {
+  position: fixed;
+}
+.pos-sticky {
+  position: sticky;
+}
+
+.vh-100 {
+  height: 100vh;
+}
+.vw-100 {
+  width: 100vh;
+}
+.hide-mobile {
+  display: block;
+}
+/* End Utility Classes */
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+.row {
+  padding: 0 40px;
+}
+
+.site-header {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  border-right: 1px solid #222;
+  box-shadow: 5px 1px 22px -1px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 5px 1px 22px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 5px 1px 22px -1px rgba(0, 0, 0, 0.75);
+  background-color: #f9f5cf;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23f3f1f5' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+.logo {
+  width: 220px;
+  height: 170px;
+  margin: 0 auto;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+}
+
+.logo img {
+  margin-left: -10px;
+}
+.card-box {
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+.card-box img {
+  transition: all 0.8s ease-in-out;
+  transform: scale(1);
+}
+.card-box:hover img {
+  transform: scale(1.1);
+}
+.card-info {
+  position: relative;
+  background: #f9f5cf;
+  color: #232323;
+  padding: 2rem;
+  overflow: hidden;
+  margin-top: -0.7rem;
+  text-align: center;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.cocktail-name {
+  font-family: 'Lobster';
+  color: rgb(220, 112, 106);
+  font-size: 2.4rem;
+  margin-bottom: 1.2rem;
+  text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1),
+    1px 1px 1px rgba(0, 0, 0, 0.25);
+}
+.liquor-list {
+  background: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #565656;
+  padding: 0.5rem 1.5rem;
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+[type='radio'] {
+  opacity: 0;
+}
+
+[type='radio']:checked ~ label {
+  background: rgb(220, 112, 106);
+  color: #fff;
+}
+.filters {
+  width: 100%;
+  margin: 0 auto;
+}
+.filters li label {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 0.6rem;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  line-height: 2.3;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+.filters li,
+.filters input {
+  position: relative;
+  width: 12rem;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #565656;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.6rem;
+}
+header h2 {
+  font-family: 'Lobster';
+  font-size: 3.2rem;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: rgb(220, 112, 106);
+  text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1),
+    1px 1px 1px rgba(0, 0, 0, 0.35);
+}
+.showModal {
+  font-family: 'Roboto';
+  font-size: 1.3rem;
+  display: block;
+  font-style: italic !important;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.35);
+  width: auto;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  margin: 0 auto;
+  line-height: 1.2rem;
+  transition: all 0.25s ease-in-out;
+  outline: none;
+}
+.showModal svg {
+  height: 1.2rem;
+  width: 1.2rem;
+  display: inline-block;
+  margin-bottom: -0.2rem;
+  transition: all 0.25s ease-in-out;
+  transform: translateX(0px);
+}
+.showModal:hover {
+  color: rgb(220, 112, 106);
+}
+.showModal:hover svg {
+  color: rgb(220, 112, 106);
+  transform: translateX(2px);
+}
+#modal .modal-active {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 10000;
+}
+#modal .card-box {
+  display: flex;
+  font-size: 1.6rem;
+  flex-direction: row;
+  height: 700px;
+  width: auto;
+}
+#modal .card-box img {
+  height: 100%;
+  width: 700px;
+}
+#modal .card-box:hover img {
+  transform: none;
+}
+#modal .card-box .card-info {
+  position: relative;
+  height: auto;
+  width: auto;
+  min-width: 700px;
+  padding: 2rem;
+  overflow: hidden;
+  overflow-y: hidden;
+  margin: 0;
+  text-align: left;
+  border-radius: 0;
+}
+#modal .ingredient-list,
+#modal span.garnish {
+  display: block;
+  margin-bottom: 3rem;
+}
+#modal .liquor-list {
+  margin-bottom: 3rem;
+}
+#modal .cocktail-name {
+  font-size: 2.8rem;
+}
+#modal h3 {
+  font-family: 'Lobster';
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.hideModal {
+  position: absolute;
+  font-size: 1rem;
+  font-weight: bold;
+  top: 5px;
+  right: 5px;
+  padding: 1.2rem;
+  text-align: center;
+  border-radius: 0;
+}
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 4rem;
+}
+.primary-button {
+  width: 11rem;
+  padding: 1.1rem 0;
+  text-align: center;
+  background: rgb(220, 112, 106);
+  color: #fff;
+}
+.primary-button:first-child {
+  margin-right: 1.5rem;
+}
+.card-list {
+  display: grid;
+  padding: 0 4rem;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 4rem;
+  row-gap: 4rem;
+}
+.hide-desktop {
+  display: none;
+}
+@media only screen and (max-width: 1599px) {
+  body {
+    width: 100vw;
+    padding: 0 !important;
+    overflow-x: hidden;
+  }
+  .mobile-logo {
+    text-align: center;
+  }
+  .mobile-logo img {
+    width: 10rem;
+    height: auto;
+  }
+  .mobile-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .hide-mobile {
+    display: none !important;
+  }
+  .hide-desktop {
+    display: block;
+  }
+  .select-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .select-container label {
+    width: 80%;
+    text-align: center;
+  }
+  .select-container label span {
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .select-container select {
+    padding: 0.8rem 1.5rem;
+    padding-left: 0.2rem;
+    width: 80%;
+    border-radius: 0.6rem;
+    background-color: #fff;
+    color: #232323;
+    outline: none;
+  }
+  .select-container select option {
+    text-transform: capitalize;
+  }
+  .row {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  .card-list {
+    display: grid;
+    padding: 5rem 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+    row-gap: 2rem;
+  }
+  .mobile-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f9f5cf;
+    min-height: 12rem;
+  }
+  #modal .card-box {
+    flex-direction: row;
+    height: auto;
+    width: auto;
+  }
+  #modal .card-box img {
+    display: none;
+  }
+  #modal .card-box .card-info {
+    font-size: 1rem;
+    min-width: 40rem;
+    width: auto;
+    overflow-y: scroll;
+  }
+  #modal .liquor-list {
+    margin-bottom: 1rem;
+  }
+}
+
+@media only screen and (max-width: 821px) {
+  body {
+    padding: 0;
+  }
+  .mobile-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+  }
+  .card-box {
+    margin-bottom: 4rem;
+  }
+}
