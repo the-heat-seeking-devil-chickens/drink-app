@@ -109,14 +109,6 @@ function Filters({ select, selected }) {
           <label htmlFor="vermouth">Vermouth</label>
         </li>
       </ul>
-      <div className="button-container">
-        <button className="primary-button" id="filter-submit" type="submit">
-          Submit
-        </button>
-        <button className="primary-button" id="filter-clear" type="submit">
-          Clear
-        </button>
-      </div>
     </>
   );
 }

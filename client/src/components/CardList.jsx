@@ -1,7 +1,8 @@
 import { useContext } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Card from './Card';
 import Filters from './Filters';
+import MobileFilters from './MobileFilters';
+import MobileHeader from './MobileHeader';
 import CocktailContext from '../context/CocktailContext';
 
 function CardList() {
@@ -10,7 +11,9 @@ function CardList() {
 
   return (
     <>
-      <header className="site-header pos-fixed vh-100 bg-light">
+      <MobileHeader />
+      <MobileFilters select={setSelectedFilter} selected={selectedFilter} />
+      <header className="site-header pos-fixed vh-100 bg-light hide-mobile">
         <div className="container">
           <div className="logo">
             <img src="./src/assets/scratch-logo.png" alt="" />
