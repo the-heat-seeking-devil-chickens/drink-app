@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   try {
     console.log('node env', process.env.NODE_ENV);
-    const conn = await mongoose.connect(process.env.MONGO_URI_PREV, {
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      dbName: 'Goblin',
+      
     });
     console.log(`Mongo DB Connected: ${conn.connection.host}`.cyan);
   } catch (error) {
