@@ -4,12 +4,13 @@
   "description": "Scratch Project",
   "main": "server.js",
   "scripts": {
-    "start": "node server/server.js",
-    "frontend" : "vite client",
+    "start": "node server/startServer.js",
+    "frontend": "vite client",
     "server": "nodemon server/server.js",
     "client": "npm run dev --prefix client",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "jest --verbose"
   },
   "author": "Goblin Sharks",
   "license": "MIT",
@@ -35,13 +36,16 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^3.0.0",
-    "nodemon": "^2.0.20",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.8",
+    "jest": "^29.3.1",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
+    "supertest": "^6.3.3",
     "vite": "^4.0.0"
   }
 }
