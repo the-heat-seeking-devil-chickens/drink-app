@@ -13,10 +13,16 @@ function CardList() {
     <>
       <MobileHeader />
       <MobileFilters select={setSelectedFilter} selected={selectedFilter} />
+
+
       <header className="site-header pos-fixed vh-100 bg-light hide-mobile">
         <div className="container">
           <div className="logo">
             <img src="./src/assets/scratch-logo.png" alt="" />
+          </div>
+          <div>
+            <h2>Add a Recipe!</h2>
+            
           </div>
           <h2> Pick Your Poison: </h2>
           <Filters select={setSelectedFilter} selected={selectedFilter} />
