@@ -31,22 +31,22 @@ const request = require('supertest');
 const app = require('../server/server.js');
 const PORT = '8081';
 
-const server = app.listen(PORT, () => {
-  console.log(`Listening on ${PORT}`);
-});
+// const server = app.listen(PORT, () => {
+//   console.log(`Listening on ${PORT}`);
+// });
 
 const url = `http://localhost:${PORT}`;
 
 describe('Route integration', () => {
   afterAll(() => {
-    // server.close((err) => {
-    //   process.exit(err ? 1 : 0);
-    // });
+    server.close((err) => {
+      process.exit(err ? 1 : 0);
+    });
   });
 
   describe('(GET) /', () => {
     it('responds with 200 status and application/json', () => {
-      return request(url)
+      return request(app)
         .get('/')
         .expect('Content-Type', /application\/json/)
         .expect(200);
