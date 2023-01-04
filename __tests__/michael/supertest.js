@@ -5,15 +5,21 @@ const app = require('../../server/app.js');
 const Spirit = require('../../server/models/dataModel.js');
 
 const validDrink = {
-  name: 'Gimlet',
-  liquor: ['gin'],
+  name: 'Whiskey Sour',
+  liquor: ['whiskey'],
   ingredients: [
-    ['lime cordial', '50ml'],
-    ['gin', '50ml'],
+    ['2 Ounces of ', 'whiskey'],
+    ['3/4 Ounces of ', 'lemon juice, freshly squeezed'],
+    ['1/2 Ounce of  ', 'simple syrup'],
+    ['1/2 Ounce of ', 'egg whites (Optional)'],
   ],
-  garnish: ['lime', 'edible flower'],
-  directions:
-    'STEP 1 Put a martini or coupe glass in the fridge to chill. STEP 2 Pour 50ml of the lime syrup (see recipe, below) or cordial into a jug or tall glass and add a few ice cubes and the gin. Stir until the outside of the container feels very cold. STEP 3 Strain the mixture into your chilled glass and garnish with a slice of lime and an edible flower.',
+  garnish: 'Garnish: Angostura Bitters',
+  directions: [
+    'Step 1: Add bourbon, lemon juice, simple syrup and egg white, if using, to a shaker and dry-shake for 30 seconds without ice.',
+    'Step 2: Add ice and shake again until well-chilled.',
+    'Step 3: Strain into a rocks glass or a coupe.',
+    'Step 4: Garnish with 3 or 4 drops of Angostura bitters.',
+  ],
 };
 
 describe('Route integration', () => {
@@ -24,7 +30,14 @@ describe('Route integration', () => {
 
   describe('DELETE to "/api/spirits/:id"', () => {
     it('responds with 200 status and application/json', async () => {
-      return request(app).post('/').send(validDrink).expect(201);
+      // create a drink in the database
+      await request(app).post('/').send(validDrink);
+      // check that drink exists in the database
+      const arr = await Spirit.find();
+      expect(arr.length).toEqual(1);
+      // delete the drink from the database
+      await request(app).delete(`/api/spirits/${arr[0]._id.toString()}`);
+      //return request(app).post('/').send({}).expect(500);
     });
   });
 
