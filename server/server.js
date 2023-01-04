@@ -3,7 +3,6 @@ const express = require('express');
 const cors = require('cors');
 const colors = require('colors');
 const dotenv = require('dotenv').config();
-const PORT = process.env.PORT || 8080;
 const connectDB = require('./config/db');
 
 //Connect to our MongoDB
@@ -33,11 +32,11 @@ app.use('/', require('./routes/cocktailRoutes'));
 //   return res.status(errorObj.status).json(errorObj.message);
 // });
 
-/**
- * start server
- */
-app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT}...`);
-});
+// /**
+//  * start server
+//  */
+// app.listen(PORT, () => {
+//   console.log(`Server listening on port: ${PORT}...`);
+// });
 
 module.exports = app;
