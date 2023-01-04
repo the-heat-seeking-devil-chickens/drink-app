@@ -4,13 +4,11 @@
   "description": "Scratch Project",
   "main": "server.js",
   "scripts": {
-    "start": "node server/startServer.js",
     "frontend": "vite client",
-    "server": "nodemon server/server.js",
-    "client": "npm run dev --prefix client",
+    "backend": "nodemon server/server.js",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "jest --verbose"
+    "test": "jest --runInBand --forceExit --verbose"
   },
   "author": "Goblin Sharks",
   "license": "MIT",
