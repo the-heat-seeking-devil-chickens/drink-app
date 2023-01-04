@@ -1,3 +1,5 @@
+import React from "react";
+
 function MobileFilters({ selected, select }) {
   const categories = [
     'all',

@@ -1,3 +1,4 @@
+import React from "react";
 function MobileHeader() {
   return (
     <header className="mobile-header hide-desktop">

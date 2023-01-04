@@ -1,3 +1,5 @@
+import React from "react";
+
 function Filters({ select, selected }) {
   const handleChange = (e) => {
     select(e.currentTarget.value);

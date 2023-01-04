@@ -4,7 +4,7 @@ import Filters from './Filters';
 import MobileFilters from './MobileFilters';
 import MobileHeader from './MobileHeader';
 import CocktailContext from '../context/CocktailContext';
-
+import React from 'react';
 function CardList() {
   const { filteredCocktails, selectedFilter, setSelectedFilter } =
     useContext(CocktailContext);
