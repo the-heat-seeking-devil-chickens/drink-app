@@ -43,4 +43,14 @@ spiritController.getSpirits = asyncHandler(async (req, res, next) => {
   return next();
 });
 
+spiritController.deleteSpirit = asyncHandler(async (req, res, next) => {
+  if (req.body.liquor === '') {
+    return baseError;
+  }
+
+  //Mongo and/or Express did not like me using const here, why?
+  res.locals.spirits = await Spirit.find();
+  return next();
+});
+
 module.exports = spiritController;
