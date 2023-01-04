@@ -9,8 +9,8 @@ describe('Route integration', () => {
   });
 
   describe('GET to "/"', () => {
-    it('responds with 200 status and application/json', async () => {
-      return await request(app)
+    it('responds with 200 status and application/json', () => {
+      return request(app)
         .get('/')
         .expect('Content-Type', /application\/json/)
         .expect(200);
@@ -18,6 +18,21 @@ describe('Route integration', () => {
   });
 
   describe('POST to "/"', () => {
+    const sampleSpirit = {
+      name: 'Boilermaker',
+      liquor: ['whiskey'],
+      ingredients: [
+        ['1 1/2 Ounces', 'whiskey'],
+        ['8 Ounces', 'beer'],
+      ],
+      garnish: 'Garnish: none',
+      directions: [
+        'Step 1: Pour the whiskey into a shot glass.',
+        'Step 2: Fill a pint glass halfway with beer.',
+        'Step 3: Drop the shot glass into the beer.',
+      ],
+    };
+
     describe('with no body', () => {
       it('responds with 500 status', () => {
         return request(app)
@@ -28,67 +43,32 @@ describe('Route integration', () => {
     });
 
     describe('with incomplete body', () => {
-
+      
+      let badInput;
+      
       beforeEach(() => {
         badInput = Object.assign({}, sampleSpirit)
       });
 
-      let badInput;
-      const sampleSpirit = {
-        name: 'Boilermaker',
-        liquor: ['whiskey'],
-        ingredients: [
-          ['1 1/2 Ounces', 'whiskey'],
-          ['8 Ounces', 'beer'],
-        ],
-        garnish: 'Garnish: none',
-        directions: [
-          'Step 1: Pour the whiskey into a shot glass.',
-          'Step 2: Fill a pint glass halfway with beer.',
-          'Step 3: Drop the shot glass into the beer.',
-        ],
-      };
-
-      it('responds with 500 status for missing name', () => {
-        delete badInput.name;
+      Object.keys(sampleSpirit).forEach(key => {
+         it(`responds with 500 status for missing ${key}`, () => {
+          delete badInput[key];
+          return request(app)
+            .post('/')
+            .send(badInput)
+            .expect(500);
+        });
+      });
+    });
+    
+    describe('with a spirit object', () => {
+      it('responds with a 201 status and the spirit object', () => {
         return request(app)
           .post('/')
-          .send(badInput)
-          .expect(500);
-      });
-
-      it('responds with 500 status for missing liquor', () => {
-        delete badInput.liquor;
-        console.log(badInput.liquor)
-        return request(app)
-          .post('/')
-          .send(badInput)
-          .expect(500);
-      });
-
-      it('responds with 500 status for missing ingredients', () => {
-        delete badInput.ingredients;
-        return request(app)
-          .post('/')
-          .send(badInput)
-          .expect(500);
-      });
-
-      it('responds with 500 status for missing garnish', () => {
-        delete badInput.garnish;
-        return request(app)
-          .post('/')
-          .send(badInput)
-          .expect(500);
-      });
-
-      it('responds with 500 status for missing directions', () => {
-        delete badInput.garnish;
-        return request(app)
-          .post('/')
-          .send(badInput)
-          .expect(500);
-      });
+          .send(sampleSpirit)
+          .expect(201)
+          .expect('Content-Type', /application\/json/)
+      })
     });
   });
 });

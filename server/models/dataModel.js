@@ -20,7 +20,6 @@ const spiritSchema = new Schema({
   },
   garnish: {
     type: String,
-    validate: input => typeof input === 'string' && input.length > 0, 
     required: true
   },
   directions: {
