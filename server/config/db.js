@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
 
 const URI = process.env.NODE_ENV === 'test' ? process.env.MONGO_URI_TEST : process.env.MONGO_URI;
-console.log('!',URI)
+
 //Connect to our MongoDB
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      // dbName: 'Goblin',
     });
     console.log(`Mongo DB Connected: ${conn.connection.host}`.cyan);
   } catch (error) {

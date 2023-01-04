@@ -8,29 +8,19 @@ const baseError = {
 
 const spiritController = {};
 
-spiritController.createSpirit = asyncHandler(async (req, res) => {
+spiritController.createSpirit = asyncHandler((req, res) => {
   const { name, ingredients, liquor, directions, garnish } = req.body;
 
-  const spirit = await Spirit.create({
+  Spirit.create({
     name,
     ingredients,
     garnish,
     directions,
     liquor,
+  }, (err, response) => {
+    if (err) res.status(500).json(err);
+    else res.status(201).json(response);
   });
-  if (spirit) {
-    res.status(201).json({
-      _id: spirit._id,
-      name: spirit.name,
-      ingredients: spirit.ingredients,
-      garnish: spirit.garnish,
-      directions: spirit.directions,
-      liquor: spirit.liquor,
-    });
-  } else {
-    res.status(400);
-    throw new Error('Data is not valid');
-  }
 });
 
 spiritController.getSpirits = asyncHandler(async (req, res, next) => {
