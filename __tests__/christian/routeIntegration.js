@@ -3,6 +3,21 @@ const app = require('../../server/app.js');
 const Spirit = require('../../server/models/dataModel.js');
 
 describe('Route integration', () => {
+  const sampleSpirit = {
+    name: 'Boilermaker',
+    liquor: ['whiskey'],
+    ingredients: [
+      ['1 1/2 Ounces', 'whiskey'],
+      ['8 Ounces', 'beer'],
+    ],
+    garnish: 'Garnish: none',
+    directions: [
+      'Step 1: Pour the whiskey into a shot glass.',
+      'Step 2: Fill a pint glass halfway with beer.',
+      'Step 3: Drop the shot glass into the beer.',
+    ],
+  };
+
   beforeEach(async () => {});
   afterAll(async () => {
     Spirit.collection.drop();
@@ -17,22 +32,8 @@ describe('Route integration', () => {
     });
   });
 
-  describe('POST to "/"', () => {
-    const sampleSpirit = {
-      name: 'Boilermaker',
-      liquor: ['whiskey'],
-      ingredients: [
-        ['1 1/2 Ounces', 'whiskey'],
-        ['8 Ounces', 'beer'],
-      ],
-      garnish: 'Garnish: none',
-      directions: [
-        'Step 1: Pour the whiskey into a shot glass.',
-        'Step 2: Fill a pint glass halfway with beer.',
-        'Step 3: Drop the shot glass into the beer.',
-      ],
-    };
 
+  describe('POST to "/"', () => {
     describe('with no body', () => {
       it('responds with 500 status', () => {
         return request(app)
@@ -69,6 +70,39 @@ describe('Route integration', () => {
           .expect(201)
           .expect('Content-Type', /application\/json/)
       })
+    });
+  });
+
+  describe('PUT to "/api/spirits/:id"', () => {
+
+    let dbSpirit;
+    const update = {...sampleSpirit, name: 'New Drink'};
+    let updateSpirit;
+
+    beforeAll(async () => {
+      // put drink into the db
+      await request(app).post('/').send(sampleSpirit);
+      // find the new drink in the db and pull it's name
+      dbSpirit = await Spirit.findOne({ name: sampleSpirit.name });
+    });
+
+    it('responds with 200 status for OK with Content Body and application/json', async () => {
+      const response = await request(app)
+        .put(`/api/spirits/${dbSpirit._id.toString()}`)
+        .send(update)
+        .expect(200)
+        .expect('Content-Type', /application\/json/);
+
+      updateSpirit = response.body;
+    });
+
+    it('returns an object with the values before the update', () => {
+      expect(JSON.stringify(updateSpirit)).toEqual(JSON.stringify(dbSpirit));
+    });
+
+    it('returns the updated object on subsequent queries', async () => {
+      const updated = await Spirit.findOne(update);
+      expect(JSON.stringify(updated)).toEqual(JSON.stringify({...dbSpirit._doc, ...update}));
     });
   });
 });
