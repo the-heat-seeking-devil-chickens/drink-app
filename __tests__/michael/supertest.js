@@ -36,8 +36,12 @@ describe('Route integration', () => {
       const arr = await Spirit.find();
       expect(arr.length).toEqual(1);
       // delete the drink from the database
-      await request(app).delete(`/api/spirits/${arr[0]._id.toString()}`);
-      //return request(app).post('/').send({}).expect(500);
+      const obj = await request(app).delete(
+        `/api/spirits/${arr[0]._id.toString()}`
+      );
+      // check that drink deleted from the database
+      const arr2 = await Spirit.find();
+      return expect(arr2.length).toEqual(0);
     });
   });
 
