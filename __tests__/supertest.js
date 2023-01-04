@@ -1,6 +1,9 @@
 const request = require('supertest');
 const app = require('../server/app.js');
 
+
+app.listen(8080)
+
 describe('Route integration', () => {
   beforeEach(async () => {});
   afterEach(async () => {});

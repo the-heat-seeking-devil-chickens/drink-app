@@ -17,16 +17,26 @@ function CardList() {
 
       <header className="site-header pos-fixed vh-100 bg-light hide-mobile">
         <div className="container">
+
           <div className="logo">
             <img src="./src/assets/scratch-logo.png" alt="" />
           </div>
-          <div>
-            <h2>Add a Recipe!</h2>
-            
-          </div>
+
           <h2> Pick Your Poison: </h2>
+
           <Filters select={setSelectedFilter} selected={selectedFilter} />
-        </div>
+        
+          <div>
+            <h2>Don't like what you see?</h2>
+              {/* <ul className="filters">
+                <li>
+                  <button name='filter' className="filter-btn" id="desktop-button">Add Recipie</button>
+                </li>
+              </ul> */}
+            </div>
+          {/* end of container div */}
+          </div>
+
       </header>
       <section className="card-list display-flex flex-dir-row flex-wrap flex-justify-evenly">
         {filteredCocktails.map((cocktail, i) => (

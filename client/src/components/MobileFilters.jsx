@@ -32,6 +32,15 @@ function MobileFilters({ selected, select }) {
           ))}
         </select>
       </label>
+      <br/>
+      <div>
+            <h2>Don't like what you see?</h2>
+              <ul className="filters">
+                <li>
+                  <button name='filter' className="filter-btn" id="mobile-button">Add Recipie</button>
+                </li>
+              </ul>
+            </div>
     </div>
   );
 }
