@@ -29,7 +29,7 @@ describe('Route integration', () => {
   });
 
   describe('DELETE to "/api/spirits/:id"', () => {
-    it('responds with 200 status and application/json', async () => {
+    it('deletes an existing document', async () => {
       // create a drink in the database
       await request(app).post('/').send(validDrink);
       // check that drink exists in the database
@@ -42,6 +42,15 @@ describe('Route integration', () => {
       // check that drink deleted from the database
       const arr2 = await Spirit.find();
       return expect(arr2.length).toEqual(0);
+    });
+  });
+
+  describe('DELETE to "/api/spirits/:id"', () => {
+    it('returns gracefully if the document does not exist', async () => {
+      // check that deleting non-existing the drink from the database returns 500 error
+      return await request(app)
+        .delete(`/api/spirits/iddoesnotexist}`)
+        .expect(500);
     });
   });
 
