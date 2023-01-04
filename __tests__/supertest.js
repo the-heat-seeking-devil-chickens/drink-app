@@ -1,9 +1,12 @@
 const request = require('supertest');
 const app = require('../server/app.js');
+const Spirit = require('../server/models/dataModel.js');
 
 describe('Route integration', () => {
   beforeEach(async () => {});
-  afterEach(async () => {});
+  afterEach(async () => {
+    Spirit.collection.drop();
+  });
 
   describe('GET to "/"', () => {
     it('responds with 200 status and application/json', async () => {
