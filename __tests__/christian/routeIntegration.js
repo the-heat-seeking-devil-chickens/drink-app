@@ -1,6 +1,6 @@
 const request = require('supertest');
-const app = require('../server/app.js');
-const Spirit = require('../server/models/dataModel.js');
+const app = require('../../server/app.js');
+const Spirit = require('../../server/models/dataModel.js');
 
 describe('Route integration', () => {
   beforeEach(async () => {});
@@ -9,8 +9,8 @@ describe('Route integration', () => {
   });
 
   describe('GET to "/"', () => {
-    it('responds with 200 status and application/json', () => {
-      return request(app)
+    it('responds with 200 status and application/json', async () => {
+      return await request(app)
         .get('/')
         .expect('Content-Type', /application\/json/)
         .expect(200);
