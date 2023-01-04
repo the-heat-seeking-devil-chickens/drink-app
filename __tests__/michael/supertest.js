@@ -53,12 +53,4 @@ describe('Route integration', () => {
         .expect(500);
     });
   });
-
-  // describe('DELETE to "/api/spirits/:id"', async () => {
-  //   it('responds with 200 status and application/json', async () => {
-  //     return await request(app).post('/').send(validDrink).expect(201);
-  //     console.log(res);
-  //     //return res;
-  //   });
-  // });
 });
