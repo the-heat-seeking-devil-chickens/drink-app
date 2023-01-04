@@ -4,9 +4,8 @@
   "description": "Scratch Project",
   "main": "server.js",
   "scripts": {
-    "start": "node server/startServer.js",
     "frontend": "vite client",
-    "server": "nodemon server/server.js",
+    "backend": "nodemon server/startServer.js",
     "client": "npm run dev --prefix client",
     "build": "vite build",
     "preview": "vite preview",
