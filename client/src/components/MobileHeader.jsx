@@ -1,3 +1,4 @@
+import React from "react";
 //renders the Possessed spirits logo
 
 function MobileHeader() {

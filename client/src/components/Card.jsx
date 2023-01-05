@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IoArrowForwardOutline } from 'react-icons/io5';
+// import { IoArrowForwardOutline } from 'react-icons/io5';
 import Modal from './Modal';
 import axios from 'axios';
 
@@ -66,7 +66,8 @@ const Card = ({ cocktail }) => {
         <h2 className="cocktail-name">{name}</h2>
         <div className="liquor-list">{liquorList}</div>
         <button className="showModal" onClick={() => setShowModal(true)}>
-          View Recipe <IoArrowForwardOutline />
+          {/* View Recipe <IoArrowForwardOutline /> */}
+          View Recipe
         </button>
       </div>
       {showModal ? (

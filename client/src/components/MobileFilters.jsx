@@ -1,3 +1,4 @@
+import React from "react";
 //renders the filters, allows the user to filter the drinks
 
 function MobileFilters({ selected, select }) {

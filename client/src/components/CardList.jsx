@@ -4,6 +4,7 @@ import Filters from './Filters';
 import MobileFilters from './MobileFilters';
 import MobileHeader from './MobileHeader';
 import CocktailContext from '../context/CocktailContext';
+import React from 'react';
 import Modal from './Modal';
 import AddDrinkForm from './AddDrinkForm.jsx'
 import AddDrinkFormTwo from './AddDrinkFormTwo.jsx';

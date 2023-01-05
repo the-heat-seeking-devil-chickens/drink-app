@@ -1,4 +1,3 @@
-const app = require('./server/server.js')
-module.exports = async (globalConfig) => {
-  
-};
+const fn = () => {};
+
+module.exports = fn;

@@ -1,13 +1,18 @@
+// https://stackoverflow.com/questions/69482210/referenceerror-textencoder-is-not-defined-with-mongodb-nodes
+
+global.TextEncoder = require('util').TextEncoder;
+global.TextDecoder = require('util').TextDecoder;
+
 const mongoose = require('mongoose');
+
+const URI = process.env.NODE_ENV === 'test' ? process.env.MONGO_URI_TEST : process.env.MONGO_URI;
 
 //Connect to our MongoDB
 const connectDB = async () => {
   try {
-    console.log('node env', process.env.NODE_ENV);
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
+    const conn = await mongoose.connect(URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      
     });
     console.log(`Mongo DB Connected: ${conn.connection.host}`.cyan);
   } catch (error) {
