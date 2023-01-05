@@ -33,7 +33,7 @@ function CardList() {
             <h2>Don't like what you see?</h2>
               <ul className="filters">
                 <li>
-                  <button name='filter' className="filter-btn" id="desktop-button" onClick = {() => setShowInputForm(true)}>Add Recipie</button>
+                  <button name='filter' className="filter-btn" id="desktop-button" onClick = {() => setShowInputForm(true)}>Add Recipe</button>
                 </li>
               </ul>
             </div>

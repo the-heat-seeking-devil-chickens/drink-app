@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { IoArrowForwardOutline } from 'react-icons/io5';
 import Modal from './Modal';
+import axios from 'axios';
 
 const Card = ({ cocktail }) => {
   const { name, directions, ingredients, liquor, garnish, id } = cocktail;
@@ -15,6 +16,13 @@ const Card = ({ cocktail }) => {
 
     return snakeName;
   };
+
+  const deleteRecipie = () => {
+    console.log('name of recipie:', name);
+    axios.delete('http://localhost:8080/', {data: { name: name } })
+    .then(res => location.reload())
+    .catch(err => console.log(err));
+  }
 
   ingredients.forEach((ingredient, i) => {
     ingredientList.push(
@@ -48,7 +56,12 @@ const Card = ({ cocktail }) => {
 
   return (
     <div className="card-box">
-      <img src={`../src/assets/${getImage()}.jpg`} alt={name} />
+      <img src={`../src/assets/${getImage()}.jpg`}
+       onError={({ currentTarget }) => {
+        currentTarget.onerror = null; // prevents looping
+        currentTarget.src="../src/assets/scratch-logo.png";
+      }} 
+       />
       <div className="card-info" data-liquor={[liquorData]}>
         <h2 className="cocktail-name">{name}</h2>
         <div className="liquor-list">{liquorList}</div>
@@ -59,7 +72,12 @@ const Card = ({ cocktail }) => {
       {showModal ? (
         <Modal className="modal-active">
           <div className="card-box">
-            <img src={`../src/assets/${getImage()}.jpg`} alt={name} />
+            <img src={`../src/assets/${getImage()}.jpg`}
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src="../src/assets/scratch-logo.png";
+            }}
+            alt={name} />
             <div className="card-info">
               <button className="hideModal" onClick={() => setShowModal(false)}>
                 X
@@ -71,6 +89,10 @@ const Card = ({ cocktail }) => {
               <span className="garnish">{garnish}</span>
               <h3>Directions</h3>
               <ul className="directions-list">{directionsList}</ul>
+              
+              
+              <button style = {{marginRight: '1rem'}}id='UpdateButton'>Update this recipe</button>
+              <button id='DeleteButton' onClick = {() => deleteRecipie()}>Delete this recipe</button>
             </div>
           </div>
         </Modal>

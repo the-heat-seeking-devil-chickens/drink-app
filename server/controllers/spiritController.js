@@ -10,7 +10,12 @@ const spiritController = {};
 
 spiritController.createSpirit = asyncHandler(async (req, res) => {
   const { name, ingredients, liquor, directions, garnish } = req.body;
-
+  console.log('these are the req body things:')
+  console.log('name:', name);
+  console.log('ingredients:', ingredients);
+  console.log('liquor:', liquor);
+  console.log('directions:', directions);
+  console.log('garnish:', garnish);
   const spirit = await Spirit.create({
     name,
     ingredients,
@@ -31,6 +36,14 @@ spiritController.createSpirit = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Data is not valid');
   }
+});
+
+spiritController.deleteSpirit = asyncHandler(async (req,res,next) => {
+  console.log('req.body', req.body)
+  const { name } = req.body;
+  console.log('about to delete:', name)
+  await Spirit.findOneAndDelete({ name })
+  return next();
 });
 
 spiritController.getSpirits = asyncHandler(async (req, res, next) => {
