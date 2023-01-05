@@ -6,6 +6,7 @@ import MobileHeader from './MobileHeader';
 import CocktailContext from '../context/CocktailContext';
 import Modal from './Modal';
 import AddDrinkForm from './AddDrinkForm.jsx'
+import AddDrinkFormTwo from './AddDrinkFormTwo.jsx';
 function CardList() {
   const { filteredCocktails, selectedFilter, setSelectedFilter } =
     useContext(CocktailContext);
@@ -49,7 +50,8 @@ function CardList() {
               <button className="hideModal" onClick={() => setShowInputForm(false)}>
                 X
               </button>
-              <AddDrinkForm selected={selectedFilter}></AddDrinkForm>
+              {/* <AddDrinkForm selected={selectedFilter}></AddDrinkForm> */}
+              <AddDrinkFormTwo selected={selectedFilter}></AddDrinkFormTwo>
             </div>
           </div>
         </Modal>
