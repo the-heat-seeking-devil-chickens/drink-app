@@ -159,12 +159,15 @@ button:focus-visible {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23f3f1f5' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 }
 .logo {
-  width: 110px;
-  height: 85px;
+  width: 220px;
+  height: 170px;
   margin: 0 auto;
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+
+
 
 .logo img {
   margin-left: -10px;
@@ -177,6 +180,7 @@ button:focus-visible {
 .card-box img {
   transition: all 0.8s ease-in-out;
   transform: scale(1);
+  background-color: #f9f5cf;
 }
 .card-box:hover img {
   transform: scale(1.1);
@@ -460,6 +464,7 @@ header h2 {
     flex-direction: row;
     height: auto;
     width: auto;
+    background-color: ;
   }
   #modal .card-box img {
     display: none;
@@ -495,3 +500,23 @@ header h2 {
     margin-bottom: 4rem;
   }
 }
+#addDrinkForm {
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+
+#newDrinkState{
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  }
+  
+#UpdateButton {
+  color:blue;
+}
+
+  #DeleteButton{
+color: red;
+  }

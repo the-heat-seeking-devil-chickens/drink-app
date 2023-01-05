@@ -8,22 +8,41 @@ const baseError = {
 
 const spiritController = {};
 
-spiritController.createSpirit = asyncHandler((req, res) => {
+spiritController.createSpirit = asyncHandler( async (req, res) => {
   const { name, ingredients, liquor, directions, garnish } = req.body;
+  // console.log('these are the req body things:')
+  // console.log('name:', name);
+  // console.log('ingredients:', ingredients);
+  // console.log('liquor:', liquor);
+  // console.log('directions:', directions);
+  // console.log('garnish:', garnish);
+  const spirit = await Spirit.create({
+    name,
+    ingredients,
+    garnish,
+    directions,
+    liquor,
+  });
+  if (spirit) {
+    res.status(201).json({
+      _id: spirit._id,
+      name: spirit.name,
+      ingredients: spirit.ingredients,
+      garnish: spirit.garnish,
+      directions: spirit.directions,
+      liquor: spirit.liquor,
+    });
+  } else {
+    res.status(400);
+    throw new Error('Data is not valid');
+  }
+});
 
-  Spirit.create(
-    {
-      name,
-      ingredients,
-      garnish,
-      directions,
-      liquor,
-    },
-    (err, response) => {
-      if (err) res.status(500).json(err);
-      else res.status(201).json(response);
-    }
-  );
+spiritController.deleteSpirit = asyncHandler(async (req,res,next) => {
+  // console.log('req.body', req.body)
+  const { name } = req.body;
+  await Spirit.findOneAndDelete({ name })
+  return next();
 });
 
 spiritController.getSpirits = asyncHandler(async (req, res, next) => {
@@ -33,16 +52,6 @@ spiritController.getSpirits = asyncHandler(async (req, res, next) => {
 
   //Mongo and/or Express did not like me using const here, why?
   res.locals.spirits = await Spirit.find();
-  return next();
-});
-
-spiritController.deleteSpirit = asyncHandler(async (req, res, next) => {
-  await Spirit.findOneAndDelete({ _id: res.locals.id });
-  return next();
-});
-
-spiritController.updateSpirit = asyncHandler(async (req, res, next) => {
-  await Spirit.findOneAndUpdate({ _id: res.locals.id });
   return next();
 });
 
