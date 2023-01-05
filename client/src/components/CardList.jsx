@@ -6,8 +6,7 @@ import MobileHeader from './MobileHeader';
 import CocktailContext from '../context/CocktailContext';
 import React from 'react';
 import Modal from './Modal';
-import AddDrinkForm from './AddDrinkForm.jsx'
-import AddDrinkFormTwo from './AddDrinkFormTwo.jsx';
+import AddDrinkForm from './AddDrinkForm.jsx';
 function CardList() {
   const { filteredCocktails, selectedFilter, setSelectedFilter } =
     useContext(CocktailContext);
@@ -31,13 +30,21 @@ function CardList() {
 
           <Filters select={setSelectedFilter} selected={selectedFilter} />
         
-          <div>
             <h2>Don't like what you see?</h2>
-              <ul className="filters">
-                <li>
-                  <button name='filter' className="filter-btn" id="desktop-button" onClick = {() => setShowInputForm(true)}>Add Recipe</button>
-                </li>
-              </ul>
+          <div style = {{display: "flex", flexDirection: "column"}}>
+              {/* <ul className="filters">
+                <li> */}
+                {/* <div className='primaryButton'> */}
+                  <button name='filter' 
+                    style={{width: "50%", margin:"0 auto", background: "rgb(220, 112, 106)"}} 
+                    className="primaryButton" id="desktop-button" 
+                    onClick = {() => setShowInputForm(true)}
+                    >
+                    Add Recipe
+                  </button>
+                {/* </div> */}
+                {/* </li>
+              </ul> */}
             </div>
           {/* end of container div */}
           </div>
@@ -52,7 +59,7 @@ function CardList() {
                 X
               </button>
               {/* <AddDrinkForm selected={selectedFilter}></AddDrinkForm> */}
-              <AddDrinkFormTwo selected={selectedFilter}></AddDrinkFormTwo>
+              <AddDrinkForm selected={selectedFilter}></AddDrinkForm>
             </div>
           </div>
         </Modal>

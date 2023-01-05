@@ -20,7 +20,10 @@ const Card = ({ cocktail }) => {
   const deleteRecipie = () => {
     console.log('name of recipie:', name);
     axios.delete('http://localhost:8080/', {data: { name: name } })
-    .then(res => location.reload())
+    .then(res => {
+      console.log('res', res)
+      location.reload()
+    })
     .catch(err => console.log(err));
   }
 
