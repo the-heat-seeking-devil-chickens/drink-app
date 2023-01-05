@@ -1,9 +1,11 @@
-const React = require ('react');
-const userEvent = require('@testing-library/user-event');
-const { render, screen, waitFor } = require('@testing-library/react');
-const regeneratorRuntime = require('regenerator-runtime');
+import React from 'react'
+import userEvent  from '@testing-library/user-event'
+import { render, screen, waitFor } from '@testing-library/react'
+import regeneratorRuntime from 'regenerator-runtime';
 
-import { useState } from 'react';
+import Reacttestrenderer from 'react-test-renderer';
+
+import { useState, useContext } from 'react';
 import CocktailContext from '../client/src/context/CocktailContext';
 import  CardList  from '../client/src/components/CardList.jsx';
 import Card from '../client/src/components/Card.jsx';
@@ -27,16 +29,17 @@ describe('Unit testing React componenets', () => {
     // Check to make sure there is a button with an id of desktop-button
     test('Should contain addDrink button', () => {
         // console.log('this is your cardlist', <CardList/>)
-      const cocktail = {
-        name : 'Dummy cocktail',
-        directions : ['do some stuff'],
-        ingredients : ['only one thing here'],
-        liquor: 'Whiskey',
-        garnish: 'Olive',
-        id: 5
-      }
+    //   const cocktail = {
+    //     name : 'Dummy cocktail',
+    //     directions : ['do some stuff'],
+    //     ingredients : ['only one thing here'],
+    //     liquor: 'Whiskey',
+    //     garnish: 'Olive',
+    //     id: 5
+    //   }
       render (
-        <Card id = {1} cocktail={cocktail}/>
+        // <Card id = {1} cocktail={cocktail}/>
+        <CardList/>
       );
       const addDrinkButton = screen.getByText('Add Recipie', {id: 'desktop-button'});
       expect(addDrinkButton).toBeInTheDocument();
