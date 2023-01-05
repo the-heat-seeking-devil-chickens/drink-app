@@ -41,4 +41,9 @@ spiritController.deleteSpirit = asyncHandler(async (req, res, next) => {
   return next();
 });
 
+spiritController.updateSpirit = asyncHandler(async (req, res, next) => {
+  await Spirit.findOneAndUpdate({ _id: res.locals.id });
+  return next();
+});
+
 module.exports = spiritController;
