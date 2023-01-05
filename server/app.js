@@ -16,6 +16,8 @@ app.use(cors());
 
 app.use('/', require('./routes/cocktailRoutes'));
 
+app.use('/api', require('./routes/api'));
+
 /**
  * handle requests for static files
  */

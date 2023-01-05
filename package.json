@@ -12,7 +12,23 @@
   },
   "author": "Goblin Sharks",
   "license": "MIT",
+  "jest": {
+    "globalTeardown": "./jest-teardown.js",
+    "testEnvironment": "jest-environment-jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest-setup.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
+      "\\.(jpg|jpeg|png|gif)$": "<rootDir>/__mocks__/fileMock.js"
+    }
+  },
   "dependencies": {
+    "@babel/plugin-transform-async-to-generator": "^7.1.0",
+    "@babel/runtime": "^7.1.2",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
@@ -20,29 +36,35 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
-    "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "framer-motion": "^4.1.17",
     "jsonwebtoken": "^8.5.1",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "mongoose": "^6.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.5.0"
   },
+  "jest": {
+    "testEnvironment": "jest-environment-jsdom",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect"
+    ]
+  },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^3.0.0",
-    "eslint": "^8.24.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
-    "eslint-plugin-react": "^7.31.8",
     "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
     "mocha": "^10.2.0",
     "nodemon": "^2.0.20",
-    "prettier": "^2.7.1",
     "supertest": "^6.3.3",
     "vite": "^4.0.0"
   }
