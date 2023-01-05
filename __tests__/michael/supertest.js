@@ -52,51 +52,42 @@ describe('Route integration 1', () => {
     });
   });
 
-
   describe('POST to "/"', () => {
     describe('with no body', () => {
       it('responds with 500 status', () => {
-        return request(app)
-          .post('/')
-          .send({})
-          .expect(500);
+        return request(app).post('/').send({}).expect(500);
       });
     });
 
     describe('with incomplete body', () => {
-      
       let badInput;
-      
+
       beforeEach(() => {
-        badInput = Object.assign({}, sampleSpirit)
+        badInput = Object.assign({}, sampleSpirit);
       });
 
-      Object.keys(sampleSpirit).forEach(key => {
-         it(`responds with 500 status for missing ${key}`, () => {
+      Object.keys(sampleSpirit).forEach((key) => {
+        it(`responds with 500 status for missing ${key}`, () => {
           delete badInput[key];
-          return request(app)
-            .post('/')
-            .send(badInput)
-            .expect(500);
+          return request(app).post('/').send(badInput).expect(500);
         });
       });
     });
-    
+
     describe('with a spirit object', () => {
       it('responds with a 201 status and the spirit object', () => {
         return request(app)
           .post('/')
           .send(sampleSpirit)
           .expect(201)
-          .expect('Content-Type', /application\/json/)
-      })
+          .expect('Content-Type', /application\/json/);
+      });
     });
   });
 
   describe('PUT to "/api/spirits/:id"', () => {
-
     let dbSpirit;
-    const update = {...sampleSpirit, name: 'New Drink'};
+    const update = { ...sampleSpirit, name: 'New Drink' };
     let updateSpirit;
 
     beforeAll(async () => {
@@ -122,7 +113,9 @@ describe('Route integration 1', () => {
 
     it('returns the updated object on subsequent queries', async () => {
       const updated = await Spirit.findOne(update);
-      expect(JSON.stringify(updated)).toEqual(JSON.stringify({...dbSpirit._doc, ...update}));
+      expect(JSON.stringify(updated)).toEqual(
+        JSON.stringify({ ...dbSpirit._doc, ...update })
+      );
     });
   });
 });
@@ -135,18 +128,20 @@ describe('Route integration', () => {
 
   describe('DELETE to "/api/spirits/:id"', () => {
     it('deletes an existing document', async () => {
+      const originalDrinks = await Spirit.find();
       // create a drink in the database
       await request(app).post('/').send(validDrink);
       // check that drink exists in the database
       const arr = await Spirit.find();
-      expect(arr.length).toEqual(1);
+      expect(arr.length).toEqual(originalDrinks.length + 1);
+
       // delete the drink from the database
       const obj = await request(app).delete(
         `/api/spirits/${arr[0]._id.toString()}`
       );
       // check that drink deleted from the database
       const arr2 = await Spirit.find();
-      return expect(arr2.length).toEqual(0);
+      return expect(arr2.length).toEqual(originalDrinks.length);
     });
   });
 
