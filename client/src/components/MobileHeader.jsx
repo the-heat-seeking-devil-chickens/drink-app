@@ -1,4 +1,6 @@
 import React from "react";
+//renders the Possessed spirits logo
+
 function MobileHeader() {
   return (
     <header className="mobile-header hide-desktop">

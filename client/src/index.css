@@ -159,11 +159,11 @@ button:focus-visible {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23f3f1f5' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 }
 .logo {
-  width: 220px;
-  height: 170px;
+  width: 110px;
+  height: 85px;
   margin: 0 auto;
-  margin-top: 10rem;
-  margin-bottom: 10rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .logo img {
@@ -385,7 +385,7 @@ header h2 {
 .hide-desktop {
   display: none;
 }
-@media only screen and (max-width: 1599px) {
+@media only screen and (max-width: 1399px) {
   body {
     width: 100vw;
     padding: 0 !important;
@@ -412,7 +412,8 @@ header h2 {
   }
   .select-container {
     display: flex;
-    justify-content: center;
+    flex-direction:column;
+    justify-content: space-around;
     align-items: center;
     padding: 3rem 0;
     background-color: rgba(0, 0, 0, 0.5);
